@@ -1,0 +1,218 @@
+🟧 AWS Scenarios
+1 ️EC2 Instance Not Accessible via SSH   
+   You launched an EC2 instance, but SSH connection keeps timing out.
+   What steps would you take to troubleshoot?
+
+2️ S3 File Upload Fails with Access Denied
+   A developer gets “Access Denied” while uploading to an S3 bucket, even though they have s3:PutObject permission. What could be wrong?
+
+3️ Auto Scaling Group (ASG) Not Launching Instances   
+   Your ASG is configured but instances are not launching. How would you debug it?
+
+4️ RDS Connection Timeout
+   Your app can't connect to RDS even though credentials are correct. What could be possible causes?
+
+5️ Lambda Function Timing Out
+   Your Lambda function times out after 3 seconds even though logic is correct. How do you debug and fix it?
+
+6️ High Latency Between EC2 and RDS
+   Your app is facing high DB latency even though both EC2 and RDS are in same VPC. How do you investigate?
+
+7️ VPC Endpoint Not Routing Traffic
+   Your EC2 instances can't reach S3 through a VPC endpoint, but direct internet access works. What could be misconfigured?
+
+8️ Cross-Account IAM Role Assumption Failing
+   You need to assume an IAM role in another AWS account, but keep getting "Access Denied". How would you troubleshoot the trust relationship?
+
+9️ CloudFront Cache Not Invalidating
+   You updated content in S3 and invalidated CloudFront cache, but users still see old versions. What could be causing this?
+
+10️ CloudWatch Alarms Not Triggering Despite High Metrics
+   Your CPU usage is at 90% but CloudWatch alarm doesn't trigger. How do you debug alarm configuration and SNS delivery?
+
+🟦 Docker Scenarios
+1 Container Keeps Restarting
+   A container runs for 5 seconds and exits continuously (CrashLoop). How would you debug?
+
+2 Docker Image Too Large
+   Your build produces an 800MB image — how do you reduce it?
+
+3 Application Not Accessible from Host
+   You run a container on port 8080, but can’t reach it from browser. How to fix it?
+
+4 Container Logs Not Appearing in CloudWatch
+   Your ECS task is running, but CloudWatch shows no logs. What steps do you take?
+
+5 Docker Build Caching Not Working
+   Docker rebuilds entire image every time. How would you improve build performance?
+
+6 Environment Secrets Exposed in Image
+   Sensitive environment variables are being baked into the Docker image. How do you properly manage secrets without exposing them?
+
+7 Docker Network Communication Between Containers Fails
+   Two containers on the same Docker network can't reach each other by service name. How would you debug this?
+
+8 Multi-Stage Build Not Optimizing Size
+   You're using multi-stage builds but the final image is still 600MB. How do you identify and fix what's bloating the image?
+
+9 Docker Compose Service Dependencies Failing
+   A microservice won't start because another service in docker-compose isn't ready yet. How do you handle service startup ordering?
+
+10 Image Registry Authentication Failing in CI/CD
+   Docker push to private registry fails with "unauthorized". How do you securely manage registry credentials in pipelines?
+
+🟩 Kubernetes Scenarios
+1 Pod in CrashLoopBackOff
+   A Pod keeps restarting repeatedly. What are your debugging steps?
+
+2 Service Not Accessible
+   Pods are healthy, but the service endpoint isn’t reachable. How do you troubleshoot?
+
+3 Pods Stuck in Pending
+   You deployed pods, but they’re stuck in Pending state. What could be the reasons?
+
+4 ConfigMap Changes Not Reflecting
+   You updated a ConfigMap, but the application still shows old values. Why?
+
+5 High CPU Usage in a Node
+   One Kubernetes node is at 95% CPU, others are fine. How do you fix it?
+
+6 Failed Deployment Rollout
+   You applied a new deployment, but rollout fails. How would you investigate?
+
+7 Pod Eviction Due to Resource Limits
+   Pods are being evicted despite low overall cluster resource usage. How do you diagnose and prevent pod evictions?
+
+8 PersistentVolume Stuck in Pending
+   Your Pod needs storage but the PVC is stuck pending. How do you verify and fix the storage provisioning issue?
+
+9 Ingress Routes Not Working Despite Service Being Up
+   Your ingress is configured but traffic doesn't reach the service. How would you troubleshoot DNS, path routing, and ingress controller?
+
+10 HPA (Horizontal Pod Autoscaler) Not Scaling Pods
+   Your HPA is configured but pods aren't scaling up during load. How do you verify metrics, thresholds, and HPA status?
+
+🟥 Linux Scenarios
+1 Disk Space Full Suddenly
+   A server’s disk got full overnight. How would you identify the cause and free up space?
+
+2 High CPU Usage
+   A process is using 100% CPU — how do you identify which process and why?
+
+3 File Permission Issue
+   A script fails with “Permission Denied”, but you’re root. What could be wrong?
+
+4 Service Not Starting
+   nginx or sshd service fails to start — how do you debug?
+
+5 DNS Not Resolving
+   ping google.com fails but ping 8.8.8.8 works. What’s happening?
+6 Memory Leak in Application
+   A process starts using 100MB but gradually consumes 5GB over a week. How would you identify which process is leaking memory and debug it?
+
+7 Log Files Consuming All Disk Space
+   /var/log is consuming 90% of disk space. How do you safely identify and rotate large log files without stopping services?
+
+8 SSH Connection Drops Intermittently
+   SSH sessions keep disconnecting randomly after 5 minutes of inactivity. What could cause this and how do you fix it?
+
+9 Network Interface Showing Dropped Packets
+   ifconfig shows dropped packets on eth0 interface, causing intermittent connection issues. How would you diagnose and fix this?
+
+10 Process Zombie After Parent Termination
+   A child process becomes a zombie (defunct) after its parent dies. How do you identify and clean up zombie processes?
+
+🟨 Terraform Scenarios
+1 Terraform Apply Fails with “Already Exists”
+   You’re trying to create an S3 bucket and Terraform throws “Bucket already exists”. How do you handle it?
+
+2 State File Corruption
+   Your remote S3 Terraform state file got corrupted. How do you recover?
+
+3 Unexpected Resource Deletion in Plan
+   Terraform shows a deletion plan for a resource that shouldn’t change. What do you check?
+
+4 Drift Between Infra and State
+   Infra is changed manually in AWS Console. How do you detect and fix drift?
+
+5 Rollback After Bad Apply
+   Your last apply broke the environment. How can you roll back safely?
+
+6 Multiple Environments (Dev, Stage, Prod)
+   How would you structure and manage Terraform state for multiple environments?
+
+7 Sensitive Values Exposed in State File
+   Database passwords and API keys are visible in plain text in your Terraform state file. How do you secure existing state and prevent future exposure?
+
+8 Module Dependency Order Causing Apply Failures
+   Terraform is trying to create resources in the wrong order, causing failures. How do you control resource creation order and handle dependencies?
+
+9 Terraform State Lock Stuck After Failed Apply
+   A crashed terraform apply left a state lock, blocking all subsequent operations. How do you safely unlock and recover?
+
+10 Importing Existing Infrastructure into Terraform State
+   You have manual AWS resources that need to be managed by Terraform. How would you import them into state without recreating them?
+
+🟪 Jenkins Scenarios
+1 Build Trigger Not Working
+   Commits are pushed to GitHub, but Jenkins pipeline isn’t triggered. How do you debug?
+
+2 Jenkins Pipeline Fails Midway
+   Jenkins pipeline stops at one stage without clear error. How do you troubleshoot?
+
+3 Credentials Missing
+   A pipeline fails due to missing AWS or Docker credentials. How do you securely manage them?
+
+4 Jenkins Slave/Agent Not Connecting
+   Jenkins agent is offline and not connecting to master. What steps do you take?
+
+5 Deployment Job Succeeds But App Not Updated
+   Jenkins job shows success, but app version didn’t change in environment. What’s your approach?
+
+6 Long Build Times
+   Your builds take 40+ minutes to complete. How would you optimize?
+
+7 Parallel Builds Causing Deployment Conflicts
+   Two builds run in parallel and both try to deploy to the same server, causing failures. How do you manage concurrent deployments safely?
+
+8 Post-Deployment Health Check Failing
+   Jenkins marks deployment as successful, but the application crashes 2 minutes later. How would you add proper health checks and monitoring?
+
+9 Jenkins Workspace Bloating Over Time
+   Jenkins workspace is consuming 500GB of disk space across all builds. How would you clean up and optimize workspace usage?
+
+10 Webhook Delivery Failures to Jenkins from GitHub
+   GitHub pushes are happening but Jenkins doesn't receive webhook events. How do you verify webhook delivery and fix connectivity issues?
+
+🟫 Git & GitHub Scenarios
+1️ Merge Conflict Resolution
+   You're merging a feature branch into main and get multiple merge conflicts in the same file. How do you resolve them safely and ensure no code is lost?
+
+2️ Accidentally Committed Sensitive Data
+   You pushed API keys and database credentials to GitHub. How do you remove them from commit history and secure your repository?
+
+3️ Detached HEAD State
+   Your team member is in a detached HEAD state and committed changes. How do you recover those commits and get back to a safe state?
+
+4️ Undoing a Published Commit
+   You need to revert a commit that's already been pushed to main and deployed to production. What's the safest approach?
+
+5️ Large Binary Files Bloating Repository
+   Your repository size has grown to 2GB because of large binary/log files. How do you clean it up and prevent future bloat?
+
+6️ Rebasing vs Merging Strategy Issues
+   Your team has inconsistent merge strategies causing a messy commit history. How would you establish and enforce a branching strategy?
+
+7️ Force Push Overwriting Team Changes
+   A developer force-pushed to main and overwrote other team members' commits. How do you recover the lost commits?
+
+8️ PR Review Bottleneck
+   Pull requests are piling up, blocking deployments. How would you optimize the review and merge process?
+
+9️ Git Stash Lost After System Crash
+   You stashed work but can't find it in the stash list. How do you recover lost stashes and prevent future data loss?
+
+10️ Git Submodule Update Breaking CI/CD
+   Your repo has submodules but CI/CD builds fail randomly with "reference not found". How do you properly manage submodule versions?
+
+
