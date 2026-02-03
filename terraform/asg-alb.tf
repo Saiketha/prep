@@ -31,11 +31,11 @@ resource "aws_lb_target_group" "example" {
 
 # Application Load Balancer
 resource "aws_lb" "example" {
-  name               = "example-alb"
-  internal           = false
-  load_balancer_type = "application"
-  security_groups    = ["sg-12345678"] # Replace with your security group ID
-  subnets            = ["subnet-12345678", "subnet-87654321"] # Replace with your subnet IDs
+  name                       = "example-alb"
+  internal                   = false
+  load_balancer_type         = "application"
+  security_groups            = ["sg-12345678"]                        # Replace with your security group ID
+  subnets                    = ["subnet-12345678", "subnet-87654321"] # Replace with your subnet IDs
   enable_deletion_protection = false
 }
 # Listener for ALB
@@ -55,11 +55,11 @@ resource "aws_autoscaling_group" "example" {
     id      = aws_launch_template.example.id
     version = "$Latest"
   }
-  min_size         = 1
-  max_size         = 3
-  desired_capacity = 2
+  min_size            = 1
+  max_size            = 3
+  desired_capacity    = 2
   vpc_zone_identifier = ["subnet-12345678", "subnet-87654321"] # Replace with your subnet IDs
-  target_group_arns = [aws_lb_target_group.example.arn]
+  target_group_arns   = [aws_lb_target_group.example.arn]
   tag {
     key                 = "Name"
     value               = "example-asg-instance"

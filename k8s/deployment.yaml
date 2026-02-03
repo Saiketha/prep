@@ -418,6 +418,9 @@ spec:
         - podSelector: 
             matchLabels:
               app: mydb # allow from only mydb pod in same namespace
+          port:
+            - protocol: TCP
+              port: 3306    
   egress:
     - to:
         - podSelector: {}

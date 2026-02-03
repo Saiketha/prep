@@ -80,8 +80,8 @@ resource "aws_iam_role_policy" "lambda_policy" {
         Resource = "*"
       },
       {
-        Effect = "Allow",
-        Action = ["dynamodb:PutItem"],
+        Effect   = "Allow",
+        Action   = ["dynamodb:PutItem"],
         Resource = aws_dynamodb_table.demo.arn
       }
     ]

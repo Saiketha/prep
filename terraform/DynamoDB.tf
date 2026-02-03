@@ -1,9 +1,9 @@
 variable "dynamo_table_name" { default = "example-table" }
 
 resource "aws_kms_key" "ddb" {
-  description = "KMS key for DynamoDB encryption (example)"
+  description             = "KMS key for DynamoDB encryption (example)"
   deletion_window_in_days = 7
-  enable_key_rotation = true
+  enable_key_rotation     = true
 }
 
 resource "aws_iam_role" "ddb_role" {
@@ -11,9 +11,9 @@ resource "aws_iam_role" "ddb_role" {
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
-      Effect = "Allow"
+      Effect    = "Allow"
       Principal = { Service = "dynamodb.amazonaws.com" }
-      Action = "sts:AssumeRole"
+      Action    = "sts:AssumeRole"
     }]
   })
 }
@@ -24,8 +24,8 @@ resource "aws_iam_role_policy" "ddb_role_policy" {
     Version = "2012-10-17",
     Statement = [
       {
-        Effect = "Allow",
-        Action = ["kms:Encrypt","kms:Decrypt","kms:GenerateDataKey*"],
+        Effect   = "Allow",
+        Action   = ["kms:Encrypt", "kms:Decrypt", "kms:GenerateDataKey*"],
         Resource = aws_kms_key.ddb.arn
       }
     ]
@@ -33,10 +33,10 @@ resource "aws_iam_role_policy" "ddb_role_policy" {
 }
 
 resource "aws_dynamodb_table" "example" {
-  name         = var.dynamo_table_name
-  billing_mode = "PAY_PER_REQUEST"  # on-demand. Use PROVISIONED with read_capacity/write_capacity if desired
-  hash_key     = "pk"
-  range_key    = "sk"
+  name             = var.dynamo_table_name
+  billing_mode     = "PAY_PER_REQUEST" # on-demand. Use PROVISIONED with read_capacity/write_capacity if desired
+  hash_key         = "pk"
+  range_key        = "sk"
   stream_enabled   = true
   stream_view_type = "NEW_AND_OLD_IMAGES"
 
@@ -66,10 +66,10 @@ resource "aws_dynamodb_table" "example" {
 
   # Global Secondary Index (GSI)
   global_secondary_index {
-    name               = "gsi1"
-    hash_key           = "gsi1pk"
-    range_key          = "sk"
-    projection_type    = "keys_only"
+    name            = "gsi1"
+    hash_key        = "gsi1pk"
+    range_key       = "sk"
+    projection_type = "keys_only"
     # If PROVISIONED, set read_capacity/write_capacity here
   }
 

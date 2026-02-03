@@ -13,10 +13,10 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "my-terraform-state-bucket"    # replace
+    bucket         = "my-terraform-state-bucket" # replace
     key            = "envs/dev/terraform.tfstate"
     region         = "us-east-1"
-    dynamodb_table = "terraform-locks"              # table for state lock
+    dynamodb_table = "terraform-locks" # table for state lock
     encrypt        = true
   }
 }

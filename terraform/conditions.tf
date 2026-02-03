@@ -21,8 +21,8 @@ resource "aws_s3_bucket" "pre_post_example" {
 resource "aws_route_table" "private_rt_dep" {
   vpc_id = aws_vpc.main.id
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block     = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.nat.id
   }
-  depends_on = [aws_nat_gateway.nat]  # explicit dependency
+  depends_on = [aws_nat_gateway.nat] # explicit dependency
 }

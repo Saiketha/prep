@@ -4,7 +4,7 @@ resource "null_resource" "example_provision" {
   }
 
   provisioner "file" {
-    source     = "some source"
+    source      = "some source"
     destination = "/tmp/from-terraform.txt"
   }
 

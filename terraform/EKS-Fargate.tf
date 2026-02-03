@@ -7,7 +7,7 @@ resource "aws_eks_cluster" "eks" {
   role_arn = aws_iam_role.eks_cluster_role.arn
 
   vpc_config {
-    subnet_ids = [element(values(aws_subnet.private),0).id, element(values(aws_subnet.private),1).id]
+    subnet_ids             = [element(values(aws_subnet.private), 0).id, element(values(aws_subnet.private), 1).id]
     endpoint_public_access = true
   }
 
@@ -31,10 +31,10 @@ resource "aws_iam_role_policy_attachment" "eks_cluster_AmazonEKSClusterPolicy" {
 
 # Fargate profile
 resource "aws_eks_fargate_profile" "fp" {
-  cluster_name = aws_eks_cluster.eks.name
-  fargate_profile_name = "example-fp"
+  cluster_name           = aws_eks_cluster.eks.name
+  fargate_profile_name   = "example-fp"
   pod_execution_role_arn = aws_iam_role.eks_fargate_pod_execution_role.arn
-  subnet_ids = [element(values(aws_subnet.private),0).id]
+  subnet_ids             = [element(values(aws_subnet.private), 0).id]
 
   selector {
     namespace = "default"
@@ -44,7 +44,7 @@ resource "aws_eks_fargate_profile" "fp" {
 resource "aws_iam_role" "eks_fargate_pod_execution_role" {
   name = "eks-fargate-pod-exec-role"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17",
+    Version   = "2012-10-17",
     Statement = [{ Effect = "Allow", Principal = { Service = "eks-fargate-pods.amazonaws.com" }, Action = "sts:AssumeRole" }]
   })
 }
